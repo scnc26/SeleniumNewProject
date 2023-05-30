@@ -53,7 +53,7 @@ public class C04_ManageMethods_ImplicitlyWait {
         //sayfayı kapatınız
         driver.close();
         /* HOMEWORK
-        Yeni bir Class olusturalim.C07_ManageWindowSet
+        Yeni bir Class olusturalim.C06_ManageWindow
         Amazon soyfasina gidelim. https://www.amazon.com/
         Sayfanin konumunu ve boyutlarini yazdirin
         Sayfanin konumunu ve boyutunu istediginiz sekilde ayarlayin
