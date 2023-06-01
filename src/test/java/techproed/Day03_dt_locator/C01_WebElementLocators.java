@@ -52,7 +52,7 @@ mutlaka locators'lari kullaniriz.
         /*
         Locators bulmak icin kullanilan methodlar var.
 
-1) findElement() ornek: driever.findElement(Locator), webelement'in yerini driver'in bulabilmesi
+1) findElement() ornek: driver.findElement(Locator), webelement'in yerini driver'in bulabilmesi
 icin bu yontem kullanilir.
 2)findElement() methodunun  icine parameter olarak yazacagimiz Locator'in 8 locator'dan hangisi oldugunu
 belirtmek icin By.LocatorTuru("LocatorBilgisi"); kullanilabilir.

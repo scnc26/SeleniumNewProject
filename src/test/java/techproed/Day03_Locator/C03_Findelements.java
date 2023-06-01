@@ -9,44 +9,49 @@ import java.time.Duration;
 import java.util.List;
 
 public class C03_Findelements {
-    public static void main(String[] args) throws InterruptedException {
-        System.setProperty("chormeDriver","src/resources/drivers/chromedriver.exe");
-        WebDriver driver=new ChromeDriver();
+    public static void main(String[] args) {
+        System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-// https://www.amazon.com sayfasına gidiniz
-        driver.get("https://www.amazon.com");
-        Thread.sleep(3000);
-//Sayfadaki linklerin sayisini ve Linklerini yazdıralım
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        //Amazon sayfasına gidelim
+        driver.get("https://amazon.com");
 
-/*
-findelement ile bir webelemente ulaşabilirken, birden fazla webelement için findelements() methodunu kullanırız.
-Bu webelementlerin sayısına ulaşmak için ya da bu web elementlerin yazısını konsola yazdırabilmek için
-List<Webelement> linklerLlistesi=driver.findelements(By.locator("locator değeri")) olarak kullanırız.
-Oluşturmuş olduğumuz List'i loop ile konsola yazdırabiliriz
- */
+        //Sayfadaki linklerin sayısını ve linkleri yazdıralım
+        /*
+        findelement ile bir webelemente ulaşabilirken, birden fazla webelement için findelements() methodunu
+        kullanırız.Bu webelementlerin sayısına ulaşmak için yada bu webelementlerin yazısını konsola yazdırabilmek için
+        List<Webelemet> linklerListesi = driver.findElements(By.locator("locator değeri")) olarak kullanırız.
+        Oluşturmuş olduğumuz list'i loop ile konsola yazdırabiliriz
+         */
         List<WebElement> linklerListesi = driver.findElements(By.tagName("a"));
-        System.out.println("Linklerin Sayısı = "+linklerListesi.size());
+        System.out.println("Linklerin Sayısı = " + linklerListesi.size());
+        /*
+                for (WebElement w:linklerListesi) {
+                    if (!w.getText().isEmpty()){
+                        System.out.println(w.getText());
+                    }
+                }
+​
+         */
+        //Lambda ile yazdıralım
+        linklerListesi.forEach(link -> {
+            if (!link.getText().isEmpty()) {
+                System.out.println(link.getText());
+            }
+        });
 
-        for (WebElement w:linklerListesi) {
-           if(!w.getText().isEmpty()){
-            System.out.println(w.getText());}
 
-        }
-////        lambda ile yazdıralim
-//        linklerListesi.forEach(w->{if (!w.getText().isEmpty()){
-//            System.out.println(w.getText());
-//        }});
-//Shop deals in Electronics elementinin yazısını yazdıralım
-
-        // get text() elementin yazisini yazdırır yoksa hash koduna benzer bir kod veriir
-        System.out.println("**********************************");
-        System.out.println(driver.findElement(By.linkText("Shop deals in Electronics")).getText());
-        String webYazisi=driver.findElement(By.linkText("Shop deals in Electronics")).getText();
+        //Shop deals in Electronics webElementinin yazısını yazdıralım
+        System.out.println("**********************************************************");
         System.out.println(driver.findElement(By.id("nav-link-accountList-nav-line-1")).getText());
         WebElement webElementYazisi = driver.findElement(By.id("nav-link-accountList-nav-line-1"));
         System.out.println(webElementYazisi.getText());
+        //webelementin üzerindeki yazıyı almak istiyorsak getText() methodunu kullanırız
+
+
         driver.close();
+
         //homework
         //Amazon sayfasına gidiniz
 //iphone aratınız
