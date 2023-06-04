@@ -21,6 +21,9 @@ public class C02_cssSelector {
         3- xpath ile text olarak locate edebiliriz ama cssSelector ile bunu yapamayız
         4- cssSelector xpath'e göre daha hızlı çalışır
          */
+        /*
+        SYNTAX------>By.cssSelector("tagName[Attribute='value']"
+         */
 
         //https://the-internet.herokuapp.com/add_remove_elements/ adresine gidin
         driver.get("https://the-internet.herokuapp.com/add_remove_elements/");
@@ -29,9 +32,10 @@ public class C02_cssSelector {
         WebElement addElementButton = driver.findElement(By.cssSelector("button[onclick='addElement()']"));
         Thread.sleep(3000);
         addElementButton.click();
-
+        Thread.sleep(3000);
         //Delete butonu'nun gorunur oldugunu test edin
-        WebElement deleteButton = driver.findElement(By.cssSelector("button[class='added-manually']"));
+        WebElement deleteButton = driver.findElement(By.cssSelector("button[onclick='deleteElement()']"));
+        //tagName "button" olmadanda calisiyor
         if (deleteButton.isDisplayed()){
             System.out.println("Test PASSED");
         }else System.out.println("Test FAILED");

@@ -12,34 +12,28 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class C03_RelativeLocator {
     public static void main(String[] args) {
-        System.setProperty("chormeDriver","src/resources/drivers/chromedriver.exe");
+              /*
+        Benzer özelliklere sahip webelementler için relative locator kullanabiliriz
+        SYNTAX;
+        driver.findElement(with(By.tagname).below().above().to_left_of().to_right_of().near()) gibi
+        methotlar ile benzer özelliklere sahip webelementleri locatini almadan o web elemente ulaşabiliriz
+         */
+        System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-/*
-Benzer özelliklere sahip web elementler icin relative locator kullanabiliriz
-SYNTAX;
-driver.findElement(with(By.tagname).below().above().to_left_of().to_right_of().near()) gibi methodlar
-ile benzer özelliklere sahip web elementleri locate'ini almadan o web elemente ulaşabiliriz.
- */
-
-
-
         //amazona gidelim
         driver.get("https://amazon.com");
 
+        //city bike aratalım
+        WebElement aramaKutusu = driver.findElement(By.xpath("//*[@type='text']"));
+        aramaKutusu.sendKeys("city bike",Keys.ENTER);
 
-        // city bike aratalım
-        WebElement aramaKutusu = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
-        aramaKutusu.sendKeys("city bike", Keys.ENTER);
-
-
-        //reletive locator kullanarak hibrit bike altindaki elemente tıklayalım
-        WebElement hibritBikes = driver.findElement(By.xpath("//*[text()='Hybrid Bikes']"));//---->//*[.='Hybrid Bikes']
-        WebElement electrikBike = driver.findElement(with(By.tagName("a")).below(hibritBikes));
-        WebElement completeBike = driver.findElement(with(By.tagName("a")).below(electrikBike));
-        electrikBike.click();
-
+        //relative locator kullanarak hybrid bikes altındaki elemente tıklayalım
+        WebElement hybridBike = driver.findElement(By.xpath("//*[text()='Hybrid Bikes']"));
+        WebElement electricBike = driver.findElement(with(By.tagName("a")).below(hybridBike));
+        WebElement completeBike = driver.findElement(with(By.tagName("a")).below(electricBike));
+        completeBike.click();
     }
 
 

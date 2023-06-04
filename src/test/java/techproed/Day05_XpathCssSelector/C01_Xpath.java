@@ -48,10 +48,10 @@ driver.findElement(By.xpath("//*[text()='Hybrid Bikes']")).click();//---->//*[.=
         System.out.println("sonucYazisi = " + sonucYazisi[0]);//sonucYazisi = 14
 
 // ilk ürününe tıklayın
-        driver.findElement(By.xpath("(//h2)[1]")).click();
+        driver.findElement(By.xpath("(//h2)[1]")).click();// h taglarıni h olarak alabilirz bu sekil
 
 // Sayfayı kapatınız
-        driver.close();
+       driver.close();
 
     }
 }
